@@ -1,19 +1,22 @@
 # Usa una imagen oficial de Python
 FROM python:3.9-slim
 
+# Evita generar archivos .pyc y mejora el logging
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
 # Establece el directorio de trabajo
 WORKDIR /app
 
-# Copia el archivo de requerimientos y los instala
-COPY requirements.txt requirements.txt
+# Copia e instala dependencias
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copia todo el código de la aplicación
+# Copia el resto del proyecto
 COPY . .
 
-# Expone el puerto que usará Cloud Run y Uvicorn
+# Cloud Run utiliza el puerto 8080
 EXPOSE 8080
 
-# Comando para iniciar la aplicación con Uvicorn
-# El host 0.0.0.0 es necesario para que sea accesible desde fuera del contenedor
+# Inicia FastAPI con Uvicorn
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
