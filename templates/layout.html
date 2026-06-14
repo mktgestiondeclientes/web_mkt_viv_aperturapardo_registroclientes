@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinos del Sabor</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Configuración de colores personalizados de Tailwind
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#17AB4D',
+              secondary: '#F71963',
+              light: '#E7E8E9',
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-light min-h-screen flex flex-col items-center justify-center p-4 font-sans">
+    
+    <main class="w-full max-w-md bg-white p-6 sm:p-8 rounded-lg shadow-md">
+      <header class="mb-8">
+          <img src="/static/img/logo.png" alt="Logo de la Empresa" class="w-40 block mx-auto">
+      </header>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
