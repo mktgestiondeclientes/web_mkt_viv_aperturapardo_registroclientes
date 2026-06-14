@@ -1,0 +1,30 @@
+steps:
+  # Construye la imagen Docker
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      - "build"
+      - "-t"
+      - "us-central1-docker.pkg.dev/spsa-marketing-prd/eventos-repo/web_mkt_viv_aperturapardo_registroclientes:latest"
+      - "."
+
+  # Sube la imagen a Artifact Registry
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      - "push"
+      - "us-central1-docker.pkg.dev/spsa-marketing-prd/eventos-repo/web_mkt_viv_aperturapardo_registroclientes:latest"
+
+  # Despliega en Cloud Run
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: gcloud
+    args:
+      - "run"
+      - "deploy"
+      - "web_mkt_viv_aperturapardo_registroclientes"
+      - "--image=us-central1-docker.pkg.dev/spsa-marketing-prd/eventos-repo/web_mkt_viv_aperturapardo_registroclientes:latest"
+      - "--region=us-central1"
+      - "--platform=managed"
+      - "--allow-unauthenticated"
+      - "--service-account=sa-cloudrun-eventos@spsa-marketing-prd.iam.gserviceaccount.com"
+
+images:
+  - "us-central1-docker.pkg.dev/spsa-marketing-prd/eventos-repo/web_mkt_viv_aperturapardo_registroclientes:latest"
