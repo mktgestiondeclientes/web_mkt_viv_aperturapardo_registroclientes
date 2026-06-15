@@ -25,3 +25,7 @@ steps:
       - "--platform=managed"
       - "--allow-unauthenticated"
       - "--service-account=sa-cloudrun-eventos@spsa-marketing-prd.iam.gserviceaccount.com"
+      - "--port=8080"
+
+images:
+  - "us-central1-docker.pkg.dev/spsa-marketing-prd/eventos-repo/web_mkt_viv_aperturapardo_registroclientes:$SHORT_SHA"  
