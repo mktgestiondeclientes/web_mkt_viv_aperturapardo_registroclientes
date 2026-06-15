@@ -4,14 +4,14 @@ steps:
     args:
       - "build"
       - "-t"
-      - "us-central1-docker.pkg.dev/spsa-marketing-prd/eventos-repo/web_mkt_viv_aperturapardo_registroclientes:$SHORT_SHA"
+      - "us-central1-docker.pkg.dev/spsa-marketing-prd/web-mkt-repositorio/web_mkt_viv_aperturapardo_registroclientes:$SHORT_SHA"
       - "."
 
   # Publicar la imagen
   - name: "gcr.io/cloud-builders/docker"
     args:
       - "push"
-      - "us-central1-docker.pkg.dev/spsa-marketing-prd/eventos-repo/web_mkt_viv_aperturapardo_registroclientes:$SHORT_SHA"
+      - "us-central1-docker.pkg.dev/spsa-marketing-prd/web-mkt-repositorio/web_mkt_viv_aperturapardo_registroclientes:$SHORT_SHA"
 
   # Desplegar en Cloud Run
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
@@ -20,7 +20,7 @@ steps:
       - "run"
       - "deploy"
       - "web_mkt_viv_aperturapardo_registroclientes"
-      - "--image=us-central1-docker.pkg.dev/spsa-marketing-prd/eventos-repo/web_mkt_viv_aperturapardo_registroclientes:$SHORT_SHA"
+      - "--image=us-central1-docker.pkg.dev/spsa-marketing-prd/web-mkt-repositorio/web_mkt_viv_aperturapardo_registroclientes:$SHORT_SHA"
       - "--region=us-central1"
       - "--platform=managed"
       - "--allow-unauthenticated"
@@ -28,4 +28,4 @@ steps:
       - "--port=8080"
 
 images:
-  - "us-central1-docker.pkg.dev/spsa-marketing-prd/eventos-repo/web_mkt_viv_aperturapardo_registroclientes:$SHORT_SHA"  
+  - "us-central1-docker.pkg.dev/spsa-marketing-prd/web-mkt-repositorio/web_mkt_viv_aperturapardo_registroclientes:$SHORT_SHA"  
