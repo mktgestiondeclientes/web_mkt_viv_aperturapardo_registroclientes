@@ -33,42 +33,68 @@
         <label class="block mb-1 font-medium">Apellido Materno</label>
         <input type="text" name="apellido_materno" required class="w-full p-2 border rounded uppercase" value="{{ persona.apellido_materno if persona }}" oninput="this.value = this.value.toUpperCase()">
     </div>
-        <div>
-        <label class="block mb-1 font-medium">Estado civil</label>
-        <select name="estado_civil" required class="w-full p-2 border rounded">
-            <option value="">Seleccionar...</option>
-            <option value="soltero">SOLTERO(A)</option>
-            <option value="casado">CASADO(A)</option>
-            <option value="viudo">VIUDO(A)</option>
-            <option value="divorciado">DIVORCIADO(A)</option>
-            <option value="conviviente">CONVIVIENTE</option>
-        </select>
-    </div>
     <!-- === FIN DEL CAMBIO DE ORDEN === -->
     <div>
         <label class="block mb-1 font-medium">Celular (9 dígitos)</label>
-        <input type="tel" name="celular" required pattern="[0-9]{9}" title="Debe contener 9 dígitos numéricos" class="w-full p-2 border rounded" value="{{ persona.celular if persona }}">
+        <input type="tel" name="celular" required maxlength="9" inputmode="numeric" pattern="[0-9]{9}" oninput="this.value=this.value.replace(/\D/g,'').slice(0,9)" class="w-full p-2 border rounded" value="{{ persona.celular if persona }}">
     </div>
     <div>
         <label class="block mb-1 font-medium">Email</label>
-        <input type="email" name="email" required class="w-full p-2 border rounded uppercase" value="{{ persona.email if persona }}" oninput="this.value = this.value.toUpperCase()">
+        <input type="email" name="email" required pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$" title="Ingrese un correo electrónico válido" class="w-full p-2 border rounded uppercase" value="{{ persona.email if persona }}" oninput="this.value = this.value.toUpperCase()" >
     </div>
     <div>
         <label class="block mb-1 font-medium">Fecha de nacimiento</label>
         <input type="date" name="fecha_nacimiento" required class="w-full p-2 border rounded" value="{{ persona.fecha_nacimiento if persona }}" oninput="this.value = this.value.toUpperCase()">
     </div>
-    </div>
-        <div>
-        <label class="block mb-1 font-medium">¿Tienes hijos?</label>
-        <select name="flg_hijos" required class="w-full p-2 border rounded">
-            <option value="">Seleccionar...</option>
-            <option value="SI">SI</option>
-            <option value="NO">NO</option>
-        </select>
-    </div>
     <div>
         <label class="block mb-1 font-medium">Distrito</label>
-        <input type="text" name="distrito" required class="w-full p-2 border rounded uppercase" value="{{ persona.distrito if persona }}" oninput="this.value = this.value.toUpperCase()">
+        <select name="distrito" required class="w-full p-2 border rounded">
+            <option value="">Seleccionar...</option>
+            <option value="ANCON" {% if persona and persona.distrito == "ANCON" %}selected{% endif %}>ANCON</option>
+            <option value="ATE" {% if persona and persona.distrito == "ATE" %}selected{% endif %}>ATE</option>
+            <option value="BARRANCO" {% if persona and persona.distrito == "BARRANCO" %}selected{% endif %}>BARRANCO</option>
+            <option value="BREÑA" {% if persona and persona.distrito == "BREÑA" %}selected{% endif %}>BREÑA</option>
+            <option value="CALLAO" {% if persona and persona.distrito == "CALLAO" %}selected{% endif %}>CALLAO</option>
+            <option value="CARABAYLLO" {% if persona and persona.distrito == "CARABAYLLO" %}selected{% endif %}>CARABAYLLO</option>
+            <option value="CERCADO DE LIMA" {% if persona and persona.distrito == "CERCADO DE LIMA" %}selected{% endif %}>CERCADO DE LIMA</option>
+            <option value="CHACLACAYO" {% if persona and persona.distrito == "CHACLACAYO" %}selected{% endif %}>CHACLACAYO</option>
+            <option value="CHORRILLOS" {% if persona and persona.distrito == "CHORRILLOS" %}selected{% endif %}>CHORRILLOS</option>
+            <option value="CHOSICA" {% if persona and persona.distrito == "CHOSICA" %}selected{% endif %}>CHOSICA</option>
+            <option value="CIENEGUILLA" {% if persona and persona.distrito == "CIENEGUILLA" %}selected{% endif %}>CIENEGUILLA</option>
+            <option value="COMAS" {% if persona and persona.distrito == "COMAS" %}selected{% endif %}>COMAS</option>
+            <option value="EL AGUSTINO" {% if persona and persona.distrito == "EL AGUSTINO" %}selected{% endif %}>EL AGUSTINO</option>
+            <option value="INDEPENDENCIA" {% if persona and persona.distrito == "INDEPENDENCIA" %}selected{% endif %}>INDEPENDENCIA</option>
+            <option value="JESUS MARIA" {% if persona and persona.distrito == "JESUS MARIA" %}selected{% endif %}>JESUS MARIA</option>
+            <option value="LA MOLINA" {% if persona and persona.distrito == "LA MOLINA" %}selected{% endif %}>LA MOLINA</option>
+            <option value="LA VICTORIA" {% if persona and persona.distrito == "LA VICTORIA" %}selected{% endif %}>LA VICTORIA</option>
+            <option value="LINCE" {% if persona and persona.distrito == "LINCE" %}selected{% endif %}>LINCE</option>
+            <option value="LOS OLIVOS" {% if persona and persona.distrito == "LOS OLIVOS" %}selected{% endif %}>LOS OLIVOS</option>
+            <option value="LURIN" {% if persona and persona.distrito == "LURIN" %}selected{% endif %}>LURIN</option>
+            <option value="MAGDALENA DEL MAR" {% if persona and persona.distrito == "MAGDALENA DEL MAR" %}selected{% endif %}>MAGDALENA DEL MAR</option>
+            <option value="MIRAFLORES" {% if persona and persona.distrito == "MIRAFLORES" %}selected{% endif %}>MIRAFLORES</option>
+            <option value="PACHACAMAC" {% if persona and persona.distrito == "PACHACAMAC" %}selected{% endif %}>PACHACAMAC</option>
+            <option value="PUCUSANA" {% if persona and persona.distrito == "PUCUSANA" %}selected{% endif %}>PUCUSANA</option>
+            <option value="PUEBLO LIBRE" {% if persona and persona.distrito == "PUEBLO LIBRE" %}selected{% endif %}>PUEBLO LIBRE</option>
+            <option value="PUENTE PIEDRA" {% if persona and persona.distrito == "PUENTE PIEDRA" %}selected{% endif %}>PUENTE PIEDRA</option>
+            <option value="PUNTA HERMOSA" {% if persona and persona.distrito == "PUNTA HERMOSA" %}selected{% endif %}>PUNTA HERMOSA</option>
+            <option value="PUNTA NEGRA" {% if persona and persona.distrito == "PUNTA NEGRA" %}selected{% endif %}>PUNTA NEGRA</option>
+            <option value="RIMAC" {% if persona and persona.distrito == "RIMAC" %}selected{% endif %}>RIMAC</option>
+            <option value="SAN BARTOLO" {% if persona and persona.distrito == "SAN BARTOLO" %}selected{% endif %}>SAN BARTOLO</option>
+            <option value="SAN BORJA" {% if persona and persona.distrito == "SAN BORJA" %}selected{% endif %}>SAN BORJA</option>
+            <option value="SAN ISIDRO" {% if persona and persona.distrito == "SAN ISIDRO" %}selected{% endif %}>SAN ISIDRO</option>
+            <option value="SAN JUAN DE LURIGANCHO" {% if persona and persona.distrito == "SAN JUAN DE LURIGANCHO" %}selected{% endif %}>SAN JUAN DE LURIGANCHO</option>
+            <option value="SAN JUAN DE MIRAFLORES" {% if persona and persona.distrito == "SAN JUAN DE MIRAFLORES" %}selected{% endif %}>SAN JUAN DE MIRAFLORES</option>
+            <option value="SAN LUIS" {% if persona and persona.distrito == "SAN LUIS" %}selected{% endif %}>SAN LUIS</option>
+            <option value="SAN MARTIN DE PORRES" {% if persona and persona.distrito == "SAN MARTIN DE PORRES" %}selected{% endif %}>SAN MARTIN DE PORRES</option>
+            <option value="SAN MIGUEL" {% if persona and persona.distrito == "SAN MIGUEL" %}selected{% endif %}>SAN MIGUEL</option>
+            <option value="SANTA ANITA" {% if persona and persona.distrito == "SANTA ANITA" %}selected{% endif %}>SANTA ANITA</option>
+            <option value="SANTA MARIA DEL MAR" {% if persona and persona.distrito == "SANTA MARIA DEL MAR" %}selected{% endif %}>SANTA MARIA DEL MAR</option>
+            <option value="SANTA ROSA" {% if persona and persona.distrito == "SANTA ROSA" %}selected{% endif %}>SANTA ROSA</option>
+            <option value="SANTIAGO DE SURCO" {% if persona and persona.distrito == "SANTIAGO DE SURCO" %}selected{% endif %}>SANTIAGO DE SURCO</option>
+            <option value="SURQUILLO" {% if persona and persona.distrito == "SURQUILLO" %}selected{% endif %}>SURQUILLO</option>
+            <option value="VILLA EL SALVADOR" {% if persona and persona.distrito == "VILLA EL SALVADOR" %}selected{% endif %}>VILLA EL SALVADOR</option>
+            <option value="VILLA MARIA DEL TRIUNFO" {% if persona and persona.distrito == "VILLA MARIA DEL TRIUNFO" %}selected{% endif %}>VILLA MARIA DEL TRIUNFO</option>
+        </select>
     </div>
     </div>
         <div>
@@ -90,7 +116,7 @@
     </div>
     <div>
         <label class="block mb-1 font-medium">Número y/o Mz</label>
-        <input type="text" name="numero_dom" class="w-full p-2 border rounded uppercase" value="{{ persona.numero_dom if persona }}" oninput="this.value = this.value.toUpperCase()">
+        <input type="text" name="numero_dom" required class="w-full p-2 border rounded uppercase" value="{{ persona.numero_dom if persona }}" oninput="this.value = this.value.toUpperCase()">
     </div>
     <div>
         <label class="block mb-1 font-medium">Interior y/o LT</label>
@@ -102,19 +128,18 @@
             {% if persona %}¡Lleva tu experiencia al siguiente nivel! Actualiza tus datos y disfruta de beneficios exclusivos de Tarjeta Vivanda.{% else %}¡Lleva tu experiencia al siguiente nivel! Únete a Tarjeta Vivanda y disfruta de beneficios exclusivos.{% endif %}
         </p>
         <div class="flex items-start">
-            <input type="checkbox" id="acepta_terminos" name="acepta_terminos" value="TRUE" required class="mt-1">
-            <label for="acepta_terminos" class="ml-2 text-sm">Acepto <a href="#" onclick="event.preventDefault(); openModal('terminos')" class="text-secondary hover:underline">Política de Datos Personales</a>.</label>
+            <input type="checkbox" id="acepta_terminos" name="acepta_terminos" value="TRUE" required class="mt-1" {% if persona and persona.acepta_terminos %}checked{% endif %}>
+            <label for="acepta_terminos" class="ml-2 text-sm">Acepto los <a href="#" onclick="event.preventDefault(); openModal('terminos')" class="text-secondary hover:underline">términos y concidiones</a>.</label>
         </div>        
         <div class="flex items-start">
-            <input type="checkbox" id="acepta_politicas" name="acepta_politicas" value="TRUE" required class="mt-1">
-            <label for="acepta_politicas" class="ml-2 text-sm">Autorizo <a href="#" onclick="event.preventDefault(); openModal('politicas')" class="text-secondary hover:underline">los Términos y Condiciones y el uso de mis datos personales para fines adicionales</a>.</label>
+            <input type="checkbox" id="acepta_politicas" name="acepta_politicas" value="TRUE" required class="mt-1" {% if persona and persona.acepta_politicas %}checked{% endif %}>
+            <label for="acepta_politicas" class="ml-2 text-sm">Autorizo el <a href="#" onclick="event.preventDefault(); openModal('politicas')" class="text-secondary hover:underline">uso de mis datos para finalidades promocionales y vinculadas</a>.</label>
         </div>
         <div class="flex items-start">
-            <input type="checkbox" id="acepta_comunicaciones" name="acepta_comunicaciones" value="TRUE" class="mt-1">
-            <label for="acepta_comunicaciones" class="ml-2 text-sm">
-                Autorizo <a href="#" onclick="event.preventDefault(); openModal('comunicaciones')" class="text-secondary hover:underline">compartir mis datos con las empresas del Grupo Intercorp</a>.
+            <input type="checkbox" id="acepta_comunicaciones" name="acepta_comunicaciones" value="TRUE" class="mt-1" {% if persona and persona.acepta_comunicaciones %}checked{% endif %}>
+            <label for="acepta_comunicaciones" class="ml-2 text-sm">Autorizo <a href="#" onclick="event.preventDefault(); openModal('comunicaciones')" class="text-secondary hover:underline">compartir mis datos con las empresas del Grupo Intercorp</a>.
             </label>
-        </div>
+        </div> 
     </div>
     
     <button type="submit" class="w-full bg-primary text-white py-2 rounded hover:bg-opacity-90 mt-6">
@@ -138,121 +163,96 @@
 
     const modalTexts = {
         terminos: {
-            title: 'Política de Datos Personales',
+            title: 'Reglamento del Programa de Clientes Vivanda',
             content: `
-                <p class="mb-2">En cumplimiento de lo dispuesto por la Ley N° 29733, Ley de Protección de Datos Personales y su reglamento aprobado por Decreto Supremo N° 016-2024-JUS, Compañía Food Retail S.A.C. pone en conocimiento de sus Clientes, los siguientes aspectos relacionados con sus datos personales:</p>
-<h3 class="font-bold mt-4 mb-2">1. IDENTIDAD Y DOMICILIO DEL TITULAR DEL BANCO DE DATOS PERSONALES.</h3>
-<p>El titular del presente banco de datos en el que se almacenarán los datos personales facilitados en la presente solicitud es Compañía Food Retail S.A.C. (en adelante, “CFR”) con RUC N° 20608300393, con domicilio en Calle Morelli 181, San Borja, Lima, Perú.</p>
-<p>La existencia de este banco de datos personales ha sido declarada a la Autoridad Nacional de Protección de Datos Personales, mediante su inscripción en el Registro Nacional de Protección de Datos Personales con la denominación “Clientes” con el código de registro RNPDP-PJP N.º 1669.</p>
+                <p class="mb-2" style="text-align: justify;" >El programa de Clientes Vivanda, en adelante EL PROGRAMA, es un programa de recompensas mediante el cual Supermercados Vivanda, en adelante LA OPERADORA, ha decidido recompensar la preferencia, frecuencia y nivel de compra de sus clientes. EL PROGRAMA tiene como herramienta principal la Tarjeta Vivanda, cuyo uso identifica a sus afiliados como clientes de Supermercados Vivanda; como tales les permite acceder a una serie de beneficios y ventajas. El uso de la Tarjeta y EL PROGRAMA son regulados por el presente documento, así como por las disposiciones o procedimientos que en forma complementaria hayan sido o vayan a ser establecidas.</p>
+                <h3 class="font-bold mt-4 mb-2">I. GENERALIDADES</h3>
+                <p style="text-align: justify;">1. EL PROGRAMA es válido en Lima Metropolitana y la Provincia Constitucional del Callao.</p>
+                <p style="text-align: justify;">2. EL PROGRAMA aplica únicamente para personas naturales.</p>
+                <p style="text-align: justify;">3. Podrán afiliarse como titulares las personas mayores a 18 años.</p>
+                <p style="text-align: justify;">4. Para participar en EL PROGRAMA se debe llenar un formulario online de registro de la Tarjeta Vivanda, en el cual el cliente deberá proporcionar sus datos personales necesarios para su afiliación.</p>
+                <p style="text-align: justify;">5. El Cliente deberá informar a LA OPERADORA oportunamente cualquier cambio de domicilio, teléfono o cualquier modificación de los datos personales ya suministrados, los cuales podrá actualizar a través de 
+                    <a href="https://tarjeta.vivanda.com.pe/auth/login" target="_blank" rel="noopener noreferrer" style="color: rgb(71, 158, 102); font-weight: bold;" class="text-secondary hover:underline">https://tarjeta.vivanda.com.pe/auth/login</a> o ejercer su derecho de rectificación o actualización, conforme a la “Política de Datos Personales” contemplada en apartado V del presente documento.</p>
+                <p style="text-align: justify;">6. La participación en EL PROGRAMA implica la aceptación de todos los términos y condiciones del presente reglamento.</p>
+                <p style="text-align: justify;">7. Para poder ser beneficiario de EL PROGRAMA, el cliente deberá presentar y pasar su Tarjeta o dictar el número de su documento de identidad (DNI/CE) en cada compra que realice en cualquier tienda Vivanda.</p>
+                <p style="text-align: justify;">8. Vivanda se reserva el derecho de modificar el presente reglamento cuando lo estime necesario, lo que pondrá en conocimiento de los afiliados por el medio de comunicación que considere conveniente.</p>
+                <p style="text-align: justify;">9. Si el Cliente no utiliza su Tarjeta o no dicta el número de su documento de identidad (DNI/CE) en un plazo de 12 meses, LA OPERADORA podrá dar por terminada la participación del cliente en el PROGRAMA, con la consiguiente pérdida del historial de transacciones que pudiera tener. En el supuesto descrito, la terminación será automática sin obligación de LA OPERADORA de comunicar este hecho al cliente.</p>
+                  
+                <h3 class="font-bold mt-4 mb-2">II. MODO DE OBTENER BENEFICIOS</h3>
+                <p style="text-align: justify;">1. Todo Tarjetahabiente de Vivanda podrá acceder a los descuentos de la guía de compra (Catálogos de productos) y promociones de las tiendas Vivanda, además podrá ser beneficiario del PROGRAMA de acuerdo al récord de compras que realice en las tiendas Vivanda, siempre que presente la Tarjeta o dicte el número de su documento de identidad (DNI/CE) al inicio de la transacción.</p>
+                <p style="text-align: justify;">2. A mayor volumen en consumos, mayor acceso a otros beneficios tales como: cuponeras de descuento, invitaciones a eventos especiales, obsequios, entre otros.</p>
+                <p style="text-align: justify;">3. Vivanda podrá remitir periódicamente al domicilio, vía correo electrónico, WhatsApp y mensajería SMS del cliente, información relacionada al PROGRAMA y Vivanda.</p>
+                <p style="text-align: justify;">4. Cualquier información adicional respecto al PROGRAMA puede ser solicitada directamente a través del correo electrónico 
+                    <a href="mailto:servicioalcliente@vivanda.pe" target="_blank" rel="noopener noreferrer" style="color: rgb(71, 158, 102); font-weight: bold;" class="text-secondary hover:underline">servicioalcliente@vivanda.pe</a> o de nuestra página de Facebook: Vivanda, piensa fresco.</p>
 
-<h3 class="font-bold mt-4 mb-2">2. DATOS PERSONALES RECOPILADOS.</h3>
-<p>Se recolectarán los siguientes datos personales de los usuarios: nombres, apellidos, correo electrónico, documento de identidad (DNI o CE), teléfono.</p>
-
-<h3 class="font-bold mt-4 mb-2">3. FINALIDAD Y USOS.</h3>
-<p>Los datos personales serán tratados acorde a las siguientes finalidades necesarias:</p>
-<ul class="list-disc list-inside space-y-2 pl-4">
-    <li>Gestionar y controlar la asistencia, así como acreditación en el evento.</li>
-    <li>Contar con la información necesaria para prestar un adecuado servicio al cliente como: la emisión de boleta/ factura, despachos de productos, gestionar consultas, reclamos y/o quejas a través de los canales habilitados para esta finalidad (Libro de reclamaciones, contact center, entre otros) y establecer contacto a fin de resolver los mismos en los canales presenciales y/o de comercio electrónico.</li>
-    <li>Cumplir con las obligaciones legales y garantizar la seguridad del evento.</li>
-    <li>Los datos podrán ser utilizados para enviar informaciones relevantes (confirmación de registro, cambios, recordatorios) y para mejorar la experiencia de los participantes a través de encuestas post-evento.</li>
-    <li>Se podrá realizar el tratamiento de los datos personales para elaboración de perfiles y decisiones automatizadas, cuyos resultados podrán tener un impacto en las acciones de la empresa tales como: mejora continua en el evento y la experiencia del cliente, siempre garantizando el cumplimiento de las normativas aplicables y la protección de sus derechos.</li>
-</ul>
-<p class="mt-2">Según corresponda, el formulario de recopilación de datos contiene algunos campos de carácter obligatorio. En caso decida no proporcionarlos, no será posible registrar tu asistencia, por lo que CFR podría incurrir en el incumplimiento de obligaciones. Si decides ingresar los datos, declaras y certificas que ellos corresponden a ti y que son verdaderos, exactos, auténticos, completos, y correctos; y que eres mayor de edad.</p>
-<p>Sus datos personales sólo serán utilizados con propósitos limitados, según lo expuesto precedentemente.</p>
-
-<h3 class="font-bold mt-4 mb-2">4. PLAZO DE CONSERVACIÓN DE LOS DATOS Y MEDIDAS DE SEGURIDAD.</h3>
-<p>Los datos personales proporcionados se conservarán por un periodo indeterminado, mientras no solicite la revocación del consentimiento. CFR tiene implementadas las medidas técnicas, organizativas y legales que garantizan la seguridad y confidencialidad de los datos personales.</p>
-
-<h3 class="font-bold mt-4 mb-2">5. TRANSFERENCIAS Y DESTINATARIOS DE DATOS PERSONALES.</h3>
-<p>Para las finalidades señaladas en el punto 3, CFR podrá valerse de encargados de tratamiento que se identifican en: <a href="https://www.vivanda.com.pe/institucional/politica-datos/relacion-proveedores" target="_blank" rel="noopener noreferrer" class="text-secondary hover:underline">https://www.vivanda.com.pe/institucional/politica-datos/relacion-proveedores</a>, algunos de los cuales se encuentran situados fuera del Perú, por lo que se producirá una transferencia internacional (flujo transfronterizo) de datos personales. Estos encargados se encuentran obligados a brindar el servicio de acuerdo con nuestras directrices de protección de datos y/o con la normativa peruana aplicable.</p>
-<p>Asimismo, queremos asegurarle que hemos implementado los procedimientos necesarios para garantizar que los encargados del tratamiento de los Datos personales, ubicados fuera de Perú, también cumplan con las normas de protección de datos personales peruanas y la legislación aplicable en el país donde se realiza el tratamiento. Además, nos comprometemos a informar oportunamente a la Autoridad de Protección de Datos Personales aquellos flujos transfronterizos conforme lo exige nuestra normativa vigente.</p>
-
-<h3 class="font-bold mt-4 mb-2">6. EJERCICIO DE LOS DERECHOS DE INFORMACION, ACCESO, RECTIFICACIÓN, CANCELACIÓN Y OPOSICIÓN DE LOS DATOS.</h3>
-<p>Como titular de sus datos personales, el usuario tiene el derecho de acceder a sus datos en posesión de CFR, conocer las características de su tratamiento, a realizar la portabilidad de los mismos, a rectificarlos en caso de ser inexactos o incompletos; solicitar sean suprimidos o cancelados al considerarlos innecesarios para las finalidades previamente expuestos o bien oponerse a su tratamiento para fines específicos. El usuario podrá en todo momento revocar el consentimiento otorgado expresamente, tanto como limitar el uso o divulgación de sus datos personales.</p>
-<p>El usuario podrá dirigir su solicitud de ejercicio de los derechos en los términos que establece el Reglamento de la Ley N°29733 a <a href="http://www.veaclub.com.pe/arco" target="_blank" rel="noopener noreferrer" class="text-secondary hover:underline">http://www.veaclub.com.pe/arco</a> o en nuestra sede administrativa con Dirección en Calle Morelli 181, San Borja, Lima, Perú, o en cualquiera de nuestros locales de Vivanda, según corresponda, a nivel nacional.</p>
-<p>En caso el usuario considere que su solicitud no ha sido atendida, puede presentar una reclamación ante la Autoridad Nacional de Protección de Datos Personales, dirigiéndose a la Mesa de Partes del Ministerio de Justicia y Derechos Humanos: Calle Scipión Llona N° 350, Miraflores, Lima, Perú o llenando el formulario publicado en el siguiente enlace <a href="https://www.minjus.gob.pe/wp-content/uploads/2018/12/FORMULARIO-DE-PROCEDIMIENTO-TRILATERAL-DE-TUTELA.pdf" target="_blank" rel="noopener noreferrer" class="text-secondary hover:underline">https://www.minjus.gob.pe/wp-content/uploads/2018/12/FORMULARIO-DE-PROCEDIMIENTO-TRILATERAL-DE-TUTELA.pdf</a>.</p>
-
-<h3 class="font-bold mt-4 mb-2">7. RESGUARDO DE LA INFORMACIÓN.</h3>
-<p>CFR ha adoptado las medidas de seguridad necesarias para garantizar la protección de los datos personales proporcionados por el Titular a fin de evitar su alteración, pérdida, acceso o procesamiento no autorizado por parte de terceros que puedan afectar la información de carácter personal.</p>
-
-<h3 class="font-bold mt-4 mb-2">8. DIVULGACIÓN.</h3>
-<p>CFR puede revelar los datos personales cuando estos sean requeridos en virtud de disposiciones legales y/o por autoridades judiciales, administrativas u otras, en el debido ejercicio de sus funciones, a efectos de colaborar con las investigaciones o procedimientos llevados a cabo por dichas autoridades gubernamentales.</p>
-
-<h3 class="font-bold mt-4 mb-2">9. DESIGNACIÓN DEL OFICIAL DE DATOS PERSONALES.</h3>
-<p>CFR ha designado a un Oficial de Datos Personales. El contacto es el siguiente: <a href="mailto:oficial.datospersonales@spsa.pe" class="text-secondary hover:underline">oficial.datospersonales@spsa.pe</a>.</p>
-
-<h3 class="font-bold mt-4 mb-2">10. MODIFICACIONES DE LA POLÍTICA DE PRIVACIDAD.</h3>
-<p>CFR se reserva expresamente el derecho a modificar, actualizar o completar esta Política de Privacidad en cualquier momento según su propio criterio, o motivado por un cambio legislativo o jurisprudencial que así lo amerite.</p>
-<p>Cualquier modificación, actualización o ampliación producida en las condiciones de tratamiento entrará en vigencia y tendrá efectos frente a los terceros desde su publicación en la Página Web.</p>
-            `
+                <p style="text-align: justify;">5. Todos los clientes beneficiados y/o premiados por EL PROGRAMA, autorizan a LA OPERADORA a difundir sus nombres y/o divulgar sus imágenes y/o fotografías en los medios digitales o físicos, incluyendo la página web y redes sociales de Vivanda, en la forma que lo considere conveniente.</p>
+                <p style="text-align: justify;">6. Los vales, cupones, descuentos y/o promociones que se otorguen por el PROGRAMA, se regirán de acuerdo a los términos y condiciones que se establezca en cada uno de ellos. En caso de devolución del producto adquirido con el beneficio del PROGRAMA, siempre que por razones objetivas corresponda dicha devolución, podrá utilizarse nuevamente el vale, cupón, descuento y/o promoción otorgado y asociado a dicho producto.</p>
+                
+                <h3 class="font-bold mt-4 mb-2">III. VALIDEZ Y VIGENCIA DEL PROGRAMA</h3>
+                <p style="text-align: justify;">Vivanda puede dar por terminado EL PROGRAMA en cualquier momento. Asimismo, informará oportunamente al cliente la fecha de caducidad del PROGRAMA, lo que no afectará los premios que hayan sido otorgados e informados a algún miembro del PROGRAMA.</p>
+                
+                <h3 class="font-bold mt-4 mb-2">IV. SERVICIOS DE PROTECCIÓN CONTRA USO INDEBIDO</h3>
+                <p style="text-align: justify;">LA OPERADORA no se responsabiliza por el uso no autorizado de su cuenta virtual de Tarjeta Vivanda, cuyas claves son de conocimiento exclusivo del beneficiario del PROGRAMA.</p>
+          `
         },
         politicas: {
-            title: 'Términos y Condiciones y Política de Datos Personales',
+            title: 'V. POLÍTICAS DE DATOS PERSONALES',
             content: `
-                <p class="mb-2">El programa de Clientes Vivanda, en adelante EL PROGRAMA, es un programa de recompensas mediante el cual Supermercados Vivanda, en adelante LA OPERADORA, ha decidido recompensar la preferencia, frecuencia y nivel de compra de sus clientes. EL PROGRAMA tiene como herramienta principal la Tarjeta Vivanda, cuyo uso identifica a sus afiliados como clientes de Supermercados Vivanda; como tales les permite acceder a una serie de beneficios y ventajas. El uso de la Tarjeta y EL PROGRAMA son regulados por el presente documento, así como por las disposiciones o procedimientos que en forma complementaria hayan sido o vayan a ser establecidas.</p>
-                <h3 class="font-bold mt-4 mb-2">I. GENERALIDADES</h3>
+                <p class="mb-2" style="text-align: justify;">En el marco de la Ley N° 29733 (Ley de Protección de Datos Personales) y su reglamento aprobado por Decreto Supremo N° 016-2024-JUS (“Reglamento”), te comunicamos lo siguiente:</p>
+                <h3 class="font-bold mt-4 mb-2">I. IDENTIDAD Y DOMICILIO DEL TITULAR DEL BANCO DE DATOS PERSONALES:</h3>
+                <p style="text-align: justify;">El titular del banco de datos personales donde se almacenarán tus datos personales es Compañía Food Retail S.A.C. (En adelante, CFR), con RUC N° 20608300393 y domicilio en Calle Morelli N° 181, San Borja, Lima. Dicho banco de datos se encuentra debidamente inscrito en el Registro Nacional de Protección de Datos Personales del Ministerio de Justicia y Derechos Humanos, bajo la denominación de "Marketing y Prospección Comercial" con código de registro PJ-2025-2262.</p>
+
+                <h3 class="font-bold mt-4 mb-2">II. DATOS PERSONALES RECOPILADOS:</h3>
+                <p style="text-align: justify;">Se recolectarán los siguientes datos personales de los usuarios que se afilien al Programa de Clientes Vivanda: nombres, apellidos, correo electrónico, documento de identidad (DNI/CE), teléfono, fecha de nacimiento, domicilio, estado civil, si tiene hijos o no.</p>
+
+                <h3 class="font-bold mt-4 mb-2">III. FINALIDAD Y USOS:</h3>
+                <p style="text-align: justify;">Tus datos personales serán tratados para las siguientes finalidades:</p>
                 <ol class="list-decimal list-inside space-y-2">
-                    <li>EL PROGRAMA es válido en Lima Metropolitana y la Provincia Constitucional del Callao.</li>
-                    <li>EL PROGRAMA aplica únicamente para personas naturales.</li>
-                    <li>Podrán afiliarse como titulares las personas mayores a 18 años.</li>
-                    <li>Para participar en EL PROGRAMA se debe llenar un formulario online de registro de la Tarjeta Vivanda, en el cual el cliente deberá proporcionar sus datos personales necesarios para su afiliación.</li>
-                    <li>El Cliente deberá informar a LA OPERADORA oportunamente cualquier cambio de domicilio, teléfono o cualquier modificación de los datos personales ya suministrados, los cuales podrá actualizar a través de <a href="https://tarjeta.vivanda.com.pe/auth/login" target="_blank" rel="noopener noreferrer" class="text-secondary hover:underline">https://tarjeta.vivanda.com.pe/auth/login</a> o ejercer su derecho de rectificación o actualización, conforme a la “Política de Datos Personales” contemplada en apartado V del presente documento.</li>
-                    <li>La participación en EL PROGRAMA implica la aceptación de todos los términos y condiciones del presente reglamento.</li>
-                    <li>Para poder ser beneficiario de EL PROGRAMA, el cliente deberá presentar y pasar su Tarjeta o dictar el número de su documento de identidad (DNI/CE) en cada compra que realice en cualquier tienda Vivanda.</li>
-                    <li>Vivanda se reserva el derecho de modificar el presente reglamento cuando lo estime necesario, lo que pondrá en conocimiento de los afiliados por el medio de comunicación que considere conveniente.</li>
-                    <li>Si el Cliente no utiliza su Tarjeta o no dicta el número de su documento de identidad (DNI/CE) en un plazo de 12 meses, LA OPERADORA podrá dar por terminada la participación del cliente en el PROGRAMA, con la consiguiente pérdida del historial de transacciones que pudiera tener. En el supuesto descrito, la terminación será automática sin obligación de LA OPERADORA de comunicar este hecho al cliente.</li>
+                    <li style="text-align: justify;">Gestionar tu afiliación al programa de beneficios "Tarjeta Vivanda" así como ejecutar y desarrollar dicho programa.</li>
+                    <li style="text-align: justify;">Gestionar listas de clientes, realizar estudios de mercado y evaluaciones financieras, registrar y analizar historiales de compra y elaborar perfiles de compra, efectuar acciones de publicidad y prospección comercial, ofrecimiento de promociones comerciales, análisis estadístico para la elaboración de estrategias comerciales, obtención de información a través de fuentes públicas y privadas, comercio electrónico, remitir (vía medios físicos, electrónicos y/o telefónicos, tales como courier, llamadas, email, sms y/o WhatsApp) publicidad, obsequios, información de ofertas y/o promociones (personalizadas o generales) de productos y/o servicios.</li>
+                    <li style="text-align: justify;">Se podrán tomar decisiones automatizadas cuyos resultados podrán tener un impacto en las acciones ofrecidas, tales como brindarte descuentos personalizados sobre la base de la elaboración de su perfil de consumo, siempre garantizando el cumplimiento de las normativas aplicables y la protección de sus derechos.</li>
+                    <li style="text-align: justify;">Se podrá tomar y publicar fotografías de los ganadores de sorteos, concursos y/o campañas promocionales, incluyendo datos personales como nombre completo, número de DNI y/o carné de extranjería, a efectos de verificar la entrega de premios y garantizar la transparencia. Estas imágenes y datos serán publicados únicamente en la página web oficial del programa Tarjeta Vivanda.</li>
+                    <li style="text-align: justify;">Enviar recordatorios sobre procesos de compra incompletos, como productos dejados en el carrito de compras online.</li>
                 </ol>
-                <h3 class="font-bold mt-4 mb-2">II. MODO DE OBTENER BENEFICIOS</h3>
-                <ol class="list-decimal list-inside space-y-2">
-                    <li>Todo Tarjetahabiente de Vivanda podrá acceder a los descuentos de la guía de compra (Catálogos de productos) y promociones de las tiendas Vivanda, además podrá ser beneficiario del PROGRAMA de acuerdo al récord de compras que realice en las tiendas Vivanda, siempre que presente la Tarjeta o dicte el número de su documento de identidad (DNI/CE) al inicio de la transacción.</li>
-                    <li>A mayor volumen en consumos, mayor acceso a otros beneficios tales como: cuponeras de descuento, invitaciones a eventos especiales, obsequios, entre otros.</li>
-                    <li>Vivanda podrá remitir periódicamente al domicilio, vía correo electrónico, WhatsApp y mensajería SMS del cliente, información relacionada al PROGRAMA y Vivanda.</li>
-                    <li>Cualquier información adicional respecto al PROGRAMA puede ser solicitada directamente a través del correo electrónico servicioalcliente@vivanda.pe o de nuestra página de Facebook: Vivanda, piensa fresco.</li>
-                    <li>Todos los clientes beneficiados y/o premiados por EL PROGRAMA, autorizan a LA OPERADORA a difundir sus nombres y/o divulgar sus imágenes y/o fotografías en los medios digitales o físicos, incluyendo la página web y redes sociales de Vivanda, en la forma que lo considere conveniente.</li>
-                    <li>Los vales, cupones, descuentos y/o promociones que se otorguen por el PROGRAMA, se regirán de acuerdo a los términos y condiciones que se establezca en cada uno de ellos. En caso de devolución del producto adquirido con el beneficio del PROGRAMA, siempre que por razones objetivas corresponda dicha devolución, podrá utilizarse nuevamente el vale, cupón, descuento y/o promoción otorgado y asociado a dicho producto.</li>
-                </ol>
-                <h3 class="font-bold mt-4 mb-2">III. VALIDEZ Y VIGENCIA DEL PROGRAMA</h3>
-                <p>Vivanda puede dar por terminado EL PROGRAMA en cualquier momento. Asimismo, informará oportunamente al cliente la fecha de caducidad del PROGRAMA, lo que no afectará los premios que hayan sido otorgados e informados a algún miembro del PROGRAMA.</p>
-                <h3 class="font-bold mt-4 mb-2">IV. SERVICIOS DE PROTECCIÓN CONTRA USO INDEBIDO</h3>
-                <p>LA OPERADORA no se responsabiliza por el uso no autorizado de su cuenta virtual de Tarjeta Vivanda, cuyas claves son de conocimiento exclusivo del beneficiario del PROGRAMA.</p>
-                <br>
-                <h3 class="font-bold mt-4 mb-2">V. POLÍTICA DE DATOS PERSONALES</h3>
-                <p>En el marco de la Ley N° 29733 (Ley de Protección de Datos Personales) y su reglamento aprobado por Decreto Supremo N° 016-2024-JUS (“Reglamento”), te comunicamos lo siguiente:</p>
-                <h3 class="font-bold mt-4 mb-2">1. IDENTIDAD Y DOMICILIO DEL TITULAR DEL BANCO DE DATOS PERSONALES:</h3>
-                <p>El titular del banco de datos personales donde se almacenarán tus datos personales es Compañía Food Retail S.A.C. (En adelante, CFR), con RUC N° 20608300393 y domicilio en Calle Morelli N° 181, San Borja, Lima. Dicho banco de datos se encuentra debidamente inscrito en el Registro Nacional de Protección de Datos Personales del Ministerio de Justicia y Derechos Humanos, bajo la denominación de “Marketing y Prospección Comercial” con el código de registro PJ-2025-2262.</p>
-                <h3 class="font-bold mt-4 mb-2">2. DATOS PERSONALES RECOPILADOS:</h3>
-                <p>Se recolectarán los siguientes datos personales de los usuarios que se afilien al Programa de Clientes Vivanda: nombres, apellidos, correo electrónico, documento de identidad (DNI/CE), teléfono, fecha de nacimiento, domicilio, estado civil, si tiene hijos o no.</p>
-                <h3 class="font-bold mt-4 mb-2">3. FINALIDAD Y USOS:</h3>
-                <p>Tus datos personales serán tratados para las siguientes finalidades: 
-                (a) Gestionar tu afiliación al programa de beneficios “Tarjeta Vivanda” así como ejecutar y desarrollar dicho programa; y, (b) Gestionar listas de clientes, realizar estudios de mercado y evaluaciones financieras, registrar y analizar historiales de compra y elaborar perfiles de compra, efectuar acciones de publicidad y prospección comercial, ofrecimiento de promociones comerciales, análisis estadístico para la elaboración de estrategias comerciales, obtención de información a través de fuentes públicas y privadas, comercio electrónico, remitir (vía medios físicos, electrónicos y/o telefónicos, tales como Courier, llamadas, email, SMS y/o WhatsApp, in-app, redes sociales u otras plataformas digitales) publicidad, obsequios, información de ofertas y/o promociones (personalizadas o generales) de productos y/o servicios. (c) Se podrán tomar decisiones automatizadas cuyos resultados podrán tener un impacto en las acciones ofrecidas, tales como brindarte descuentos personalizados sobre la base de la elaboración de su perfil de consumo, siempre garantizando el cumplimiento de las normativas aplicables y la protección de sus derechos. (d) Adicionalmente, también se podrá tomar y publicar fotografías de los ganadores de sorteos, concursos y/o campañas promocionales, incluyendo datos personales como el nombre completo y/o número de documento de identidad y/o carnet de extranjería, con el fin de evidenciar la entrega del premio y dar mayor veracidad y transparencia a dichas campañas. Estas imágenes y datos serán publicados únicamente por la página web oficial del programa Tarjeta Vivanda (e) Enviar recordatorios sobre procesos de compra no culminados, como productos dejados en el carrito de compras de la plataforma online.</p>
-                <p>Entre los datos que te pedimos en numeral 2 algunos son de carácter obligatorio; en caso decidas no proporcionarlos, no será posible gestionar tu afiliación al programa de beneficios “Tarjeta Vivanda” ni realizar los demás tratamientos indicados en el numeral 3. Al ingresar tus datos, declaras y certificas que ellos corresponden a ti y que son verdaderos, exactos, auténticos, completos, y correctos; y que eres mayor de edad.</p>
-                <p>Asimismo, te comunicamos que la autorización que nos brindas nos faculta para tratar (únicamente para las finalidades antes indicadas) no sólo los datos que nos has proporcionado directamente, sino también aquellos que pudieran encontrarse en fuentes lícitas y públicas y/o aquellas que sean transferidas en base a tu autorización previa a algún tercero, incluidos datos sensibles, de ser el caso.</p>
-                <h3 class="font-bold mt-4 mb-2">4. PLAZO DE CONSERVACIÓN DE LOS DATOS Y MEDIDAS DE SEGURIDAD:</h3>
-                <p>Los datos personales proporcionados se conservarán de manera indeterminada, mientras no solicites la revocación de tu consentimiento. CFR tiene implementadas las medidas técnicas, organizativas y legales que garantizan la seguridad y confidencialidad de los datos personales.</p>
-                <h3 class="font-bold mt-4 mb-2">5. TRANSFERENCIAS Y DESTINATARIOS DE DATOS PERSONALES</h3>
-                <p>Para las finalidades señaladas en el punto 3, CFR podrá valerse de encargados de tratamiento que se identifican en el enlace <a href="https://www.vivanda.com.pe/institucional/politica-datos/relacion-proveedores" target="_blank" rel="noopener noreferrer" class="text-secondary hover:underline">https://www.vivanda.com.pe/institucional/politica-datos/relacion-proveedores</a> algunos de los cuales se encuentran situados fuera del Perú, por lo que se producirá una transferencia internacional (flujo transfronterizo) de datos personales. Estos encargados se encuentran obligados a brindar el servicio de acuerdo con nuestras directrices de protección de datos y/o con la normativa peruana aplicable. Asimismo, queremos asegurarle que hemos implementado los procedimientos necesarios para garantizar que los encargados del tratamiento de los Datos personales, ubicados fuera de Perú, también cumplan con las normas de protección de datos personales peruanas y la legislación aplicable en el país donde se realiza el tratamiento. Además, nos comprometemos a informar oportunamente a la Autoridad de Protección de Datos Personales aquellos flujos transfronterizos conforme lo exige nuestra normativa vigente.</p>
-                <h3 class="font-bold mt-4 mb-2">6. EJERCICIO DE LOS DERECHOS DE INFORMACION, ACCESO, RECTIFICACIÓN, CANCELACIÓN Y OPOSICIÓN DE LOS DATOS:</h3>
-                <p>Como titular de tus datos personales, tienes el derecho de acceder a tus datos en posesión de CFR, conocer las características de su tratamiento, a la portabilidad de estos, a rectificarlos en caso de ser inexactos o incompletos; solicitar sean suprimidos o cancelados al considerarlos innecesarios para las finalidades previamente expuestas o bien oponerte a su tratamiento para fines específicos. Asimismo, podrás en todo momento revocar el consentimiento otorgado expresamente, tanto como limitar el uso o divulgación de tus datos personales.</p>
-                <p>Para tal efecto, podrás dirigir tu solicitud de ejercicio de los derechos en los términos que establece el Reglamento de la Ley N°29733 a <a href="http://www.veaclub.com.pe/arco" target="_blank" rel="noopener noreferrer" class="text-secondary hover:underline">http://www.veaclub.com.pe/arco</a> o en nuestra sede administrativa con Dirección en Calle Morelli 181, San Borja, Lima, Perú, o en cualquiera de nuestros locales de Vivanda a nivel nacional.</p>
-                <p>Cabe indicar que el ejercicio de algunos de esos derechos (como por ejemplo el de revocación de la autorización) traerá como consecuencia dejar sin efecto tu afiliación al programa de beneficios “Tarjeta Vivanda”.</p>
-                <p>De considerar que no ha sido atendido en el ejercicio de sus derechos puede presentar una reclamación ante la Autoridad Nacional de Protección de Datos Personales, dirigiéndose a la Mesa de Partes del Ministerio de Justicia y Derechos Humanos: Calle Scipion Llona 350, Miraflores, Lima, Perú llenando el formulario publicado en el siguiente <a href="https://www.minjus.gob.pe/wp-content/uploads/2018/12/FORMULARIO-DE-PROCEDIMIENTO-TRILATERAL-DE-TUTELA.pdf" target="_blank" rel="noopener noreferrer" class="text-secondary hover:underline">enlace</a>.</p>
-                <h3 class="font-bold mt-4 mb-2">7. RESGUARDO DE LA INFORMACIÓN:</h3>
-                <p>CFR ha adoptado las medidas de seguridad necesarias para garantizar la protección de tus datos personales proporcionados a fin de evitar su alteración, pérdida, acceso o procesamiento no autorizado por parte de terceros que puedan afectar la información de carácter personal.</p>
-                <h3 class="font-bold mt-4 mb-2">8. DIVULGÁCIÓn:</h3>
-                <p>CFR puede revelar tus datos personales cuando estos sean requeridos en virtud de disposiciones legales y/o por autoridades judiciales, administrativas u otras, en el debido ejercicio de sus funciones, a efectos de colaborar con las investigaciones o procedimientos llevados a cabo por dichas autoridades gubernamentales.</p>
-                <h3 class="font-bold mt-4 mb-2">9. DESIGNACIÓN DEL OFICIAL DE DATOS PERSONALES:</h3>
-                <p>CHD designó a un Oficial de Datos Personales, cuyo correo de contacto es el siguiente: <a href="mailto:oficial.datospersonales@spsa.pe" class="text-secondary hover:underline">oficial.datospersonales@spsa.pe</a>.</p>
-                <h3 class="font-bold mt-4 mb-2">10. MODIFICACIONES DE LA POLÍTICA DE PRIVACIDAD.</h3>
-                <p>CFR se reserva expresamente el derecho a modificar, actualizar o completar esta Política de Privacidad en cualquier momento según su propio criterio, o motivado por un cambio legislativo o jurisprudencial que así lo amerite.</p>
-                <p>Cualquier modificación, actualización o ampliación producida en las condiciones de tratamiento entrará en vigencia y tendrá efectos frente a los terceros desde su publicación en la Página Web</p>
-                <p class="mt-4 italic">Fecha última actualización: 29 de septiembre de 2025.</p>
+                <p style="text-align: justify;">Los datos solicitados en el numeral 2 son obligatorios. De no proporcionarlos, no será posible gestionar tu afiliación al programa de beneficios "Tarjeta Vivanda" ni realizar los demás tratamientos mencionados en el numeral 3. Al proporcionar tus datos, declaras y certificas que corresponden a ti, que son verdaderos, exactos, auténticos, completos y correctos, y que eres mayor de edad.</p>
+                <p style="text-align: justify;">Te informamos que la autorización que nos brindas permite tratar (únicamente para las finalidades antes indicadas) no solo los datos que nos has proporcionado directamente, sino también aquellos que se encuentren en fuentes lícitas y públicas y/o datos transferidos con base en autorización previa a un tercero, incluyendo datos sensibles, de ser el caso.</p>
+                
+                <h3 class="font-bold mt-4 mb-2">IV. PLAZO DE CONSERVACIÓN DE LOS DATOS Y MEDIDAS DE SEGURIDAD:</h3>
+                <p style="text-align: justify;">Los datos personales se conservarán de manera indefinida, salvo que solicites la revocación del consentimiento. CFR ha implementado las medidas técnicas, organizativas y legales que garantizan la seguridad y confidencialidad de los datos personales.</p>
+                
+                <h3 class="font-bold mt-4 mb-2">V. TRANSFERENCIAS Y DESTINATARIOS DE DATOS PERSONALES:</h3>
+                <p style="text-align: justify;">Para las finalidades indicadas en el punto 3, CFR podrá valerse de encargados de tratamiento identificados en: <a href="https://www.vivanda.com.pe/institucional/politica-datos/relacion-proveedores" target="_blank" rel="noopener noreferrer" style="color: rgb(71, 158, 102); font-weight: bold;" class="text-secondary hover:underline">enlace</a> </p>
+                <p style="text-align: justify;">Algunos de dichos encargados se encuentran situados fuera de Perú, por lo que se producirá una transferencia internacional de datos. Estos encargados están obligados a cumplir con las directrices de protección de datos de CFR y/o las regulaciones peruanas aplicables. CFR asegura que existen procedimientos para garantizar el cumplimiento de las normas peruanas de protección de datos y la legislación local del país donde se realiza el tratamiento. CFR también se compromete a comunicar oportunamente a la Autoridad de Protección de Datos Personales aquellos flujos transfronterizos conforme lo exige nuestra normativa vigente.</p>
+
+                <h3 class="font-bold mt-4 mb-2">VI. EJERCICIO DE LOS DERECHOS DE INFORMACIÓN, ACCESO, RECTIFICACIÓN, CANCELACIÓN Y OPOSICIÓN DE LOS DATOS:</h3>
+                <p style="text-align: justify;">Como titular de tus datos personales, tienes el derecho de acceder a tus datos en posesión de CFR, conocer las características de su tratamiento, a la portabilidad de estos, a rectificarlos en caso de ser inexactos o incompletos; solicitar sean suprimidos o cancelados al considerarlos innecesarios para las finalidades previamente expuestas o bien oponerte a su tratamiento para fines específicos. Asimismo, podrás en todo momento revocar el consentimiento otorgado expresamente, tanto como limitar el uso o divulgación de tus datos personales.</p>
+                <p style="text-align: justify;">Para tal efecto, podrás dirigir tu solicitud de ejercicio de los derechos en los términos que establece el Reglamento de la Ley N°29733 a 
+                    <a href="http://www.veaclub.com.pe/arco" target="_blank" rel="noopener noreferrer" style="color: rgb(71, 158, 102); font-weight: bold;" class="text-secondary hover:underline">http://www.veaclub.com.pe/arco</a> o en nuestra sede administrativa con Dirección en Calle Morelli 181, San Borja, Lima, Perú, o en cualquiera de nuestros locales de Vivanda a nivel nacional.</p>
+                <p style="text-align: justify;">Cabe indicar que el ejercicio de algunos de esos derechos (como por ejemplo el de revocación de la autorización) traerá como consecuencia dejar sin efecto tu afiliación al programa de beneficios "Tarjeta Vivanda".</p>
+                <p style="text-align: justify;">De considerar que no ha sido atendido en el ejercicio de sus derechos puede presentar una reclamación ante la Autoridad Nacional de Protección de Datos Personales, dirigiéndose a la Mesa de Partes del Ministerio de Justicia y Derechos Humanos: Calle Scipion Llona 350, Miraflores, Lima, Perú llenando el formulario publicado en el siguiente
+                    <a href="https://www.minjus.gob.pe/wp-content/uploads/2018/12/FORMULARIO-DE-PROCEDIMIENTO-TRILATERAL-DE-TUTELA.pdf" target="_blank" rel="noopener noreferrer" style="color: rgb(71, 158, 102); font-weight: bold;" class="text-secondary hover:underline">enlace</a>. </p>
+
+                <h3 class="font-bold mt-4 mb-2">VII. RESGUARDO DE LA INFORMACIÓN:</h3>
+                <p style="text-align: justify;">CFR ha adoptado las medidas de seguridad necesarias para garantizar la protección de tus datos personales proporcionados a fin de evitar su alteración, pérdida, acceso o procesamiento no autorizado por parte de terceros que puedan afectar la información de carácter personal.</p>
+
+                <h3 class="font-bold mt-4 mb-2">VIII. DIVULGACIÓN:</h3>
+                <p style="text-align: justify;">CFR puede revelar tus datos personales cuando estos sean requeridos en virtud de disposiciones legales y/o por autoridades judiciales, administrativas u otras, en el debido ejercicio de sus funciones, a efectos de colaborar con las investigaciones o procedimientos llevados a cabo por dichas autoridades gubernamentales.</p>
+
+                <h3 class="font-bold mt-4 mb-2">IX. DESIGNACIÓN DEL OFICIAL DE DATOS PERSONALES:</h3>
+                <p style="text-align: justify;">CFR designó a un Oficial de Datos Personales, cuyo correo de contacto es el siguiente:
+                     <a href="mailto:oficial.datospersonales@spsa.pe" target="_blank" rel="noopener noreferrer" style="color: rgb(71, 158, 102); font-weight: bold;" class="text-secondary hover:underline">oficial.datospersonales@spsa.pe</a>. </p>
+
+                <h3 class="font-bold mt-4 mb-2">X. MODIFICACIONES DE LA POLÍTICA DE PRIVACIDAD:</h3>
+                <p style="text-align: justify;">CFR se reserva expresamente el derecho a modificar, actualizar o completar esta Política de Privacidad en cualquier momento según su propio criterio, o motivado por un cambio legislativo o jurisprudencial que así lo amerite. Cualquier modificación, actualización o ampliación producida en las condiciones de tratamiento entrará en vigencia y tendrá efectos frente a los terceros desde su publicación en la Página Web.</p>
+
+                <p class="mb-2">Fecha última actualización: 04 de septiembre de 2025.</p>
             `
         },
         comunicaciones: {
             title: 'AUTORIZO COMPARTIR MIS DATOS CON EMPRESAS DEL GRUPO INTERCORP',
             content: `
-                <p>Usted autoriza a COMPAÑÍA FOOD RETAIL S.A.C. para que transfiera sus datos a las empresas que se identifican en el enlace <a href="https://empresas-intercorp.azurewebsites.net" target="_blank" rel="noopener noreferrer" class="text-secondary hover:underline">https://empresas-intercorp.azurewebsites.net</a>, a efectos de que estas realicen para sí mismas el tratamiento de sus datos para gestionar listas de clientes, realizar estudios de mercado y evaluaciones financieras, registrar y analizar historiales de compra y elaborar perfiles de compra, efectuar acciones de publicidad y prospección comercial, ofrecimiento de promociones comerciales, fines estadísticos o históricos, remitir (vía medio físico, electrónico y/o telefónico) publicidad, obsequios, información de ofertas y/o promociones (personalizadas o generales) de productos y/o servicios.</p>
-                <p>Cabe indicar que algunas de dichas empresas cuentan con servidores informáticos situados fuera del Perú, por lo que se producirá una transferencia internacional de datos.</p>
+                <p style="text-align: justify;">Usted autoriza a COMPAÑÍA FOOD RETAIL S.A.C. para que transfiera sus datos a las empresas que se identifican en el <a href="https://empresas-intercorp.azurewebsites.net" target="_blank" rel="noopener noreferrer" style="color: rgb(71, 158, 102); font-weight: bold;" class="text-secondary hover:underline">enlace</a>, a efectos de que estas realicen para sí mismas el tratamiento de sus datos para gestionar listas de clientes, realizar estudios de mercado y evaluaciones financieras, registrar y analizar historiales de compra y elaborar perfiles de compra, efectuar acciones de publicidad y prospección comercial, ofrecimiento de promociones comerciales, fines estadísticos o históricos, remitir (vía medio físico, electrónico y/o telefónico) publicidad, obsequios, información de ofertas y/o promociones (personalizadas o generales) de productos y/o servicios.</p>
+                <p style="text-align: justify;">Cabe indicar que algunas de dichas empresas cuentan con servidores informáticos situados fuera del Perú, por lo que se producirá una transferencia internacional de datos.</p>
             `
         }
     };
