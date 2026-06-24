@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="text-center">
-    <h1 class="text-2xl font-bold mb-2">Reapertura Pardo</h1>
+    <h1 class="text-2xl font-bold mb-2">Afíliate o Actualiza tus datos</h1>
     <p class="text-gray-600 mb-6">Bienvenido al programa de clientes Vivanda. Ingresa tus datos para comenzar.</p>
 </div>
 <form id="verifyForm" action="/verify" method="post" class="space-y-4">
@@ -35,33 +35,29 @@
     const submitBtn = document.getElementById('submitBtn');
     const errorMsg = document.getElementById('doc-error');
 
-    function validate() {
-        const type = docTypeSelect.value;
-        const id = docIdInput.value;
-        const apellido = apePaternoInput.value; // <-- CAMBIO
+function validate() {
+    const type = docTypeSelect.value;
+    const id = docIdInput.value.trim();
+    const apellido = apePaternoInput.value.trim();
 
-        let isDocValid = false;
-        errorMsg.classList.add('hidden');
+    let isDocValid = false;
+    errorMsg.classList.add("hidden");
 
-        if (type === 'DNI') {
-            isDocValid = id.length === 8 && /^\d{8}$/.test(id);
-            if (id.length > 0 && !isDocValid) {
-                errorMsg.textContent = 'El DNI debe tener 8 dígitos.';
-                errorMsg.classList.remove('hidden');
-            }
-        } else if (type === 'CE') {
-            // <!-- CAMBIO: Se actualizó de 10 a 12 dígitos -->
-            isDocValid = id.length === 12 && /^\d{12}$/.test(id);
-            if (id.length > 0 && !isDocValid) {
-                // <!-- CAMBIO: Se actualizó el mensaje de error -->
-                errorMsg.textContent = 'El CE debe tener 12 dígitos.';
-                errorMsg.classList.remove('hidden');
-            }
+    if (type === "DNI") {
+        isDocValid = id.length === 8 && /^\d{8}$/.test(id);
+
+        if (id.length > 0 && !isDocValid) {
+            errorMsg.textContent = "El DNI debe tener 8 dígitos.";
+            errorMsg.classList.remove("hidden");
         }
-        
-        // <-- CAMBIO: El botón se activa solo si el documento Y el apellido son válidos
-        submitBtn.disabled = !(isDocValid && apellido.trim().length > 0);
+    } else {
+        // CE u otros: basta con que exista al menos un dígito distinto de 0
+        isDocValid = /[1-9]/.test(id);
     }
+
+        // <-- CAMBIO: El botón se activa solo si el documento Y el apellido son válidos
+    submitBtn.disabled = !(isDocValid && apellido.trim().length > 0);
+}
 
     docTypeSelect.addEventListener('input', validate);
     docIdInput.addEventListener('input', validate);
