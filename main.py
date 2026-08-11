@@ -15,7 +15,7 @@ client = bigquery.Client()
 PROJECT_ID = "spsa-marketing-prd"
 DATASET_ID = "GDC_proyectos"
 # <-- CORRECCIÓN: He añadido el '0' que faltaba en los nombres de las tablas
-TABLE = "tb_mkt_dim_viv_registrowebpardo"
+TABLE = "tb_mkt_dim_viv_registrowebjavierprado"
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
