@@ -19,7 +19,7 @@ steps:
     args:
       - "run"
       - "deploy"
-      - "web-mkt-viv-aperturapardo-registroclientes"
+      - "web-viv-registroclientes"
       - "--image=us-central1-docker.pkg.dev/spsa-marketing-prd/web-mkt-repositorio/web-mkt-viv-aperturapardo-registroclientes:$SHORT_SHA"
       - "--region=us-central1"
       - "--platform=managed"
